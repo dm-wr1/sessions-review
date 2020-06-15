@@ -35,4 +35,28 @@ module.exports = {
       }
     }
   },
+
+  unsecuredRouteTracking: async (req, res, next) => {
+    const db = req.app.get('db')
+
+    const logObj = {
+      method: req.method,
+      path: req.path,
+      user_id: null,
+      authorized: true,
+    }
+
+    const [existingLog] = await db.user_history.find(logObj)
+
+    if (existingLog) {
+      await db.user_history.save({
+        id: existingLog.id,
+        count: existingLog.count + 1,
+      })
+    } else {
+      await db.user_history.insert(logObj)
+    }
+
+    next()
+  },
 }

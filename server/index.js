@@ -8,7 +8,10 @@ const authCtrl = require('./controllers/authController')
 const carCtrl = require('./controllers/carController')
 const movieCtrl = require('./controllers/moviesController')
 const authMiddleware = require('./middlewares/authMiddleware')
-const { secureRouteTracking } = require('./middlewares/logHistory')
+const {
+  secureRouteTracking,
+  unsecuredRouteTracking,
+} = require('./middlewares/logHistory')
 const { USER, ADMIN } = require('../constants/ROLES')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
@@ -63,8 +66,8 @@ app.delete(
 
 //* Car endpoints
 
-app.get('/api/cars', secureRouteTracking([USER, ADMIN]), carCtrl.getAllCars)
-app.get('/api/cars/:id', secureRouteTracking([USER, ADMIN]), carCtrl.getCarById)
+app.get('/api/cars', unsecuredRouteTracking, carCtrl.getAllCars)
+app.get('/api/cars/:id', unsecuredRouteTracking, carCtrl.getCarById)
 app.post('/api/cars', secureRouteTracking([ADMIN]), carCtrl.addCar)
 app.delete('/api/cars/:id', secureRouteTracking([ADMIN]), carCtrl.deleteCar)
 
