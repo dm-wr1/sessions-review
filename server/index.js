@@ -1,8 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const massive = require('massive')
-const { SERVER_PORT, CONNECTION_STRING } = process.env
 const setup = require('./controllers/setup')
 const authCtrl = require('./controllers/authController')
 const carCtrl = require('./controllers/carController')
