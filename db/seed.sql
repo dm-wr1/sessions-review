@@ -21,8 +21,8 @@ CREATE TABLE user_history(
   user_id int references users(id),
   method varchar(10),
   path text,
-  time timestamp default now(),
-  authorized boolean
+  authorized boolean,
+  count int default 1
 );
 
 CREATE TABLE movies(

@@ -1,8 +1,13 @@
-const parseQuery = require('../../utils/parseQuery')
+const filterWithQueries = require('../../utils/filterWithQuery')
 
 module.exports = {
   getAllMovies: async (req, res) => {
     const db = req.app.get('db')
+    const { query } = req
+
+    const movies = await db.movies.find()
+
+    const filteredMovies = filterWithQueries(movies, query)
 
     res.status(200).send(filteredMovies)
   },
