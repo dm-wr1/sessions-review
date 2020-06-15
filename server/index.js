@@ -14,9 +14,9 @@ app.use(express.json())
  * ! MASSIVE AND QUERIES TODOS
  * //TODO: Set up heroku db/.env
  * //TODO: Set up massive connection
- * TODO: Build controllers
- * TODO: - Cars controller(db folder/object syntax)
- * TODO: - Movies controller(inline)
+ * //TODO: Build controllers
+ * //TODO: - Cars controller(db folder/object syntax)
+ * //TODO: - Movies controller(inline)
  * TODO: Set up queries
  * TODO: - Filter cars by make, model, year, color
  * TODO: - Filter movies by year, rating
