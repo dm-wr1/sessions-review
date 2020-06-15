@@ -69,7 +69,7 @@ app.delete('/auth/logout', authCtrl.logout)
 app.get('/api/users/:role_id')
 
 //! Seeding endpoint.  Keep at bottom.
-app.post('/api', setup.seed)
+app.post('/api', authMiddleware([ADMIN]), setup.seed)
 
 massive({
   connectionString: CONNECTION_STRING,

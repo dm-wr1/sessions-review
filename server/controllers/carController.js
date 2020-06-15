@@ -1,15 +1,14 @@
+const filterWithQueries = require('../../utils/filterWithQuery')
+
 module.exports = {
   getAllCars: async (req, res) => {
     const db = req.app.get('db')
+    const { query } = req
+    const cars = await db.get_all_cars()
 
-    try {
-      const cars = await db.get_all_cars()
+    const filteredCars = filterWithQueries(cars, query)
 
-      res.status(200).send(cars)
-    } catch (error) {
-      console.log(error)
-      res.status(500).send('Could not retrieve cars')
-    }
+    res.status(200).send(filteredCars)
   },
   getCarById: async (req, res) => {
     const db = req.app.get('db')

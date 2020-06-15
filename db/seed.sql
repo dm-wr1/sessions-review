@@ -19,7 +19,8 @@ CREATE TABLE users (
 CREATE TABLE user_history(
   id serial primary key,
   user_id int references users(id),
-  request text,
+  method varchar(10),
+  path text,
   time timestamp default now(),
   authorized boolean
 );
